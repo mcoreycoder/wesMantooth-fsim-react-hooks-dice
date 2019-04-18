@@ -3,18 +3,22 @@ import React, { useState } from 'react'
 const Die = ({ numSides }) => {
     const [roll, setRoll] = useState(0)
     const [history, setHistory] = useState([])
-    console.log('roll', roll, '| sides', numSides,'| history', history)
+    // console.log('roll', roll, '| sides', numSides,'| history', history)
     let newHistory = history
-    if(roll !== 0){
-        newHistory.push(roll)
-    }
+    
+    var rollPromise = new Promise(function(resolve, reject) {})
+   
     return (
         <div className='box'>
             <pre>
                 Roll : {roll} | Sides : {numSides} 
             </pre>
             {history.join(', ')}
-            <button onClick={() => { setRoll(Math.ceil(Math.random() * numSides)); setHistory(newHistory) }}>
+            <button onClick={() => { setRoll(Math.ceil(Math.random() * numSides));  if(roll !== 0 ){
+        console.log('newHistory', newHistory)
+        console.log('history', history)
+        newHistory= [...newHistory,roll]
+    }; setHistory(newHistory) }}>
                 Roll
             </button>
         </div>
@@ -22,7 +26,7 @@ const Die = ({ numSides }) => {
 }
 
 const Dice = ({ dice }) => {
-    const displayDice = dice.map(die => <Die numSides={die.numSides}/>)
+    const displayDice = dice.map((die, index) => <Die key={index} numSides={die.numSides}/>)
     return(
         <div>
             {displayDice}
@@ -43,7 +47,7 @@ const DiceBag = () => {
     return (
         <div>
             <input type="number" onChange={(event) => setInput(event.target.value)} />
-            <button onClick={() => setDice(newDice.push({numSides:input}))}>Add Die</button>
+            <button onClick={() => setDice([...newDice,{numSides:input}])}>Add Die</button>
             <Dice dice={dice}/>
         </div>
     )
