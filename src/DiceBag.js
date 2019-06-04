@@ -8,8 +8,8 @@ const Die = ({ numSides }) => {
        
     return (
         <div className='box'>
-            <pre>
-                Roll : {roll} | Sides : {numSides} {/** roll is pulled from state, numSides is the prop passed in from <Dice dice={dice}/> in the diceBag to the <Die key={index} numSides={die.numSides}/> in Dice*/}
+            <pre style={{backgroundColor: 'lightblue', border: 'solid blue'}}>
+                Rolled : {roll} | Sides : {numSides} {/** roll is pulled from state, numSides is the prop passed in from <Dice dice={dice}/> in the diceBag to the <Die key={index} numSides={die.numSides}/> in Dice*/}
             </pre>
             {history.join(', ')} {/** takes the histroy collection and displays as string with comma seperating each item of the array */}
             <button onClick={() => { setRoll(Math.ceil(Math.random() * numSides));  if(roll !== 0 ){
@@ -43,7 +43,7 @@ const defaultDice = [
 
 // has state of dice and input. 
 const DiceBag = () => {
-    const [dice, setDice] = useState(defaultDice) // [dice is state which is an array to hold a collection, setDice is a function to update the state of dice] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
+    const [dice, setDice] = useState(defaultDice) // const [dice is state which is an array to hold a collection, setDice is a function to update the state of dice] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
     const [input, setInput] = useState(0) // [input is state which is a number to hold a single value, setInput is a function to update the state of input] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
     const newDice = dice // takes in the current state of dice
     return (
