@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+// Die component has state of roll and history. 
 const Die = ({ numSides }) => {
     const [roll, setRoll] = useState(0) // [roll is state that holds a single value, setRoll is the function to update the roll state value] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
     const [history, setHistory] = useState([]) // [history is state which is an array to hold a collection, setHistory is a function to update the history state collection] = useState(defaultState) is a function to set up the hook and set default value for this hooks state  
@@ -39,7 +40,7 @@ const defaultDice = [
     { numSides: 20 }
 ]
 
-// has state of dice and input. 
+// DiceBag component has state of dice and input. 
 const DiceBag = () => {
     const [dice, setDice] = useState(defaultDice) // const [dice is state which is an array to hold a collection, setDice is a function to update the state of dice] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
     const [input, setInput] = useState(0) // [input is state which is a number to hold a single value, setInput is a function to update the state of input] = useState(defaultState) is a function to set up the hook and set default value for this hooks state 
